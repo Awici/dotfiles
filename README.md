@@ -13,3 +13,6 @@ This is by no means complete and **will** change alot
 - [paru](https://github.com/morganamilo/paru) - A feature packed AUR helper
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - A grep alternative written in rust (it's good)
 - [neovim](https://github.com/neovim/neovim) - You better know what this is...
+- [bottom](https://github.com/ClementTsang/bottom) - Yet another cross-platform graphical process/system monitor written in rust
+- [fd](https://github.com/sharkdp/fd) - A simple, fast and user-friendly alternative to 'find'
+

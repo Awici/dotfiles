@@ -92,7 +92,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias v='nvim'
 # alias bat='batcat'
-alias ls='exa'
+alias ls='exa -lah --icons'
 
 PATH=$PATH:/home/le/.yarn/bin
 export PATH=/home/le/.nimble/bin:$PATH
@@ -140,3 +140,4 @@ eval $(thefuck --alias)
 
 eval "$(starship init zsh)"
 
+# [ -f "/home/le/.ghcup/env" ] && source "/home/le/.ghcup/env" # ghcup-env

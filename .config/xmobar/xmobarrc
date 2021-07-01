@@ -1,0 +1,56 @@
+-- http://projects.haskell.org/xmobar/
+-- I use Font Awesome 5 fonts in this config for unicode "icons".  On Arch Linux,
+-- install this package from the AUR to get these fonts: otf-font-awesome-5-free
+
+Config { font    = "xft:Fira Code Nerd Font:weight=bold:pixelsize=15:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Fira Code Nerd Font:pixelsize=15:antialias=true:hinting=true"
+                           , "xft:Font Awesome 5 Free Solid:pixelsize=25"
+                           , "xft:Font Awesome 5 Brands:pixelsize=25"
+                           ]
+       , bgColor = "#282c34"
+       , fgColor = "#ff6c6b"
+       , position = Static { xpos = 0 , ypos = 0, width = 3000, height = 40 }
+       , lowerOnStart = True
+       , hideOnStart = False
+       , allDesktops = True
+       , persistent = True
+       , iconRoot = "/home/le/.xmonad/xpm/"  -- default: "."
+       , commands = [
+                    -- Time and date
+                      Run Date "<fn=2>\xf017</fn>  %b %d %Y - (%H:%M) " "date" 50
+                      -- Network up and down
+                    , Run Network "wlp59s0" ["-t", "<fn=2>\xf0ab</fn>  <rx>kb  <fn=2>\xf0aa</fn>  <tx>kb"] 20
+                      -- Cpu usage in percent
+                    , Run Cpu ["-t", "<fn=2>\xf108</fn>  cpu: (<total>%)","-H","50","--high","red"] 20
+                      -- Ram used number and percent
+                    , Run Memory ["-t", "<fn=2>\xf233</fn>  mem: <used>M (<usedratio>%)"] 20
+                      -- Disk space free
+                    , Run DiskU [("/", "<fn=2>\xf0c7</fn>  hdd: <free> free")] [] 60
+                      -- Runs custom script to check for pacman updates.
+                      -- This script is in my dotfiles repo in .local/bin.
+                    , Run Com "/home/le/.local/bin/pacupdate" [] "pacupdate" 36000
+                      -- Runs a standard shell command 'uname -r' to get kernel version
+--                    , Run Volume "default" "Master"
+--                      ["-t","<status> <volume>%"
+--                      , "--"
+--                      , "-O", ""
+--                      , "-o",""
+--                      ] 10
+                    , Run Volume "default" "Master" [] 10
+                    , Run Battery [
+                      "-t", ": <left>% - <timeleft>",
+                      "--",
+                      --"-c", "charge_full",
+                      "-O", "AC",
+                      "-o", "Bat",
+                      "-h", "green",
+                      "-l", "red"
+                      ] 10
+                    , Run Com "uname" ["-r"] "" 3600
+                    , Run UnsafeStdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " <icon=haskell_20.xpm/> %default:Master% <fc=#666666>|</fc> %UnsafeStdinReader% }{  <fc=#666666>|</fc>  <fc=#b3afc2><fn=3></fn>  <action=`kitty -e btm`>%uname%</action> </fc> <fc=#666666>|</fc> %battery% <fc=#666666>|</fc> <fc=#ecbe7b> <action=`kitty -e btm`>%cpu%</action> </fc> <fc=#666666>|</fc>  <fc=#ff6c6b> <action=`kitty -e btm`>%memory%</action> </fc> <fc=#666666>|</fc>  <fc=#51afef> <action=`kitty -e btm`>%disku%</action> </fc> <fc=#666666>|</fc>  <fc=#98be65> <action=`kitty -e sudo iftop`>%wlp59s0%</action> </fc> <fc=#666666>|</fc>   <fc=#c678dd><fn=2></fn>  <action=`kitty -e sudo pacman -Syu`>updates</action> </fc> <fc=#666666>|</fc>  <fc=#46d9ff> %date% </fc>"
+       }
+
