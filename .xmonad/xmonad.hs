@@ -130,7 +130,7 @@ color4 = "#2E9AFE"
 myStartupHook :: X ()
 myStartupHook = do
   spawnOnce "picom &"
-  spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
+  spawnOnce "nitrogen --restore &"  -- set last saved feh wallpaper
   setWMName "LG3D"
 
 ------------------------------------------------------------------------
