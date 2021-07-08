@@ -15,4 +15,5 @@ This is by no means complete and **will** change alot
 - [neovim](https://github.com/neovim/neovim) - You better know what this is...
 - [bottom](https://github.com/ClementTsang/bottom) - Yet another cross-platform graphical process/system monitor written in rust
 - [fd](https://github.com/sharkdp/fd) - A simple, fast and user-friendly alternative to 'find'
+- [st](https://github.com/siduck76/st) - The terminal I use, specifically this fork with those patches
 

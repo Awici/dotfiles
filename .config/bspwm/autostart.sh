@@ -10,8 +10,10 @@ function run {
 # Kills and restarts sxhkd
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-picom &
-nitrogen --restore &
-dunst &
+run picom &
+run xrdb merge ~/.Xresources &
+run nitrogen --restore &
+run setxkbmap gb &
+run dunst &
 
-$HOME/.config/polybar/forest/launch.sh &
+run $HOME/.config/polybar/forest/launch.sh &

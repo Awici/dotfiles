@@ -1,5 +1,5 @@
 super + Return
-  kitty
+  st
 
 super + b
   brave
@@ -59,15 +59,15 @@ super + {Left,Down,Up,Right}
 
 # Multimedia keys
 XF86AudioRaiseVolume
-  amixer -q set Master 5%+ unmute
+  pamixer -ui 5
 
 # Still muøltimedia
 XF86AudioLowerVolume
-  amixer -q set Master 5%- unmute
+  pamixer -ud 5
 
 # still
 XF86AudioMute
-  amixer set Master toggle
+  pamixer -t
   
 # Brightness up
 XF86MonBrightnessUp

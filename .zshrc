@@ -94,7 +94,7 @@ alias v='nvim'
 # alias bat='batcat'
 alias ls='exa -lah --icons'
 
-PATH=$PATH:/home/le/.yarn/bin
+export PATH=$PATH:/home/le/.yarn/bin
 export PATH=/home/le/.nimble/bin:$PATH
 # alias fd='fdfind'
 
@@ -102,9 +102,15 @@ export FZF_DEFAULT_COMMAND="fd --type file --color=always"
 export FZF_DEFAULT_OPTS="--ansi"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --preview 'bat --color=always --line-range :300 {}'" 
+export NNN_PLUG='f:finder;o:fzopen;p:preview-tabbed;d:diffs;t:nmount;v:imgview;w:wall'
+export NNN_FIFO=/tmp/nnn.fifo
 # export MANPATH="/usr/local/man:$MANPATH"
+
+
 # export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 # You may need to manually set your language environment
@@ -135,8 +141,6 @@ HISTFILE=~/.zsh_history
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-eval $(thefuck --alias)
 
 eval "$(starship init zsh)"
 

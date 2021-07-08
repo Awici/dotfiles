@@ -1,51 +1,30 @@
-require('plugins')
-require('globals')
-require('p-settings')
-require('settings')
-require('keymappings')
-require('p-colorscheme')
-require('p-autopairs')
-require('p-barbar')
-require('p-blankline')
-require('p-comment')
-require('p-compe')
-require('p-colorizer')
-require('p-dashboard-nvim')
-require('p-file-icons')
-require('p-gitsigns')
-require('p-nvimtree')
-require('p-rnvimr')
-require('p-telescope')
-require('p-treesitter')
-require('p-lualine')
-require('p-whichkey')
-require('p-zen')
+-- load all plugins
+require "pluginList"
+require "misc-utils"
+require "top-bufferline"
 
--- LSP
-require('lsp')
-require('lsp.clangd')
-require('lsp.php-ls')
-require('lsp.dart-ls')
-require('lsp.lua-ls')
-require('lsp.bash-ls')
-require('lsp.go-ls')
-require('lsp.js-ts-ls')
-require('lsp.python-ls')
-require('lsp.rust-ls')
-require('lsp.json-ls')
-require('lsp.yaml-ls')
-require('lsp.terraform-ls')
-require('lsp.vim-ls')
-require('lsp.graphql-ls')
-require('lsp.docker-ls')
-require('lsp.html-ls')
-require('lsp.css-ls')
-require('lsp.emmet-ls')
-require('lsp.efm-general-ls')
-require('lsp.latex-ls')
-require('lsp.svelte-ls')
-require('lsp.tailwindcss-ls')
-require('lsp.ruby-ls')
-require('lsp.kotlin-ls')
-require('lsp.vue-ls')
+local g = vim.g
 
+g.mapleader = " "
+g.auto_save = false
+
+-- colorscheme related stuff
+
+g.nvchad_theme = "onedark"
+local base16 = require "base16"
+base16(base16.themes["onedark"], true)
+
+require "highlights"
+require "mappings"
+require "file-icons"
+require "statusline"
+
+-- hide line numbers , statusline in specific buffers!
+vim.api.nvim_exec(
+    [[
+   au BufEnter term://* setlocal nonumber
+   au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
+   au BufEnter term://* set laststatus=0 
+]],
+    false
+)

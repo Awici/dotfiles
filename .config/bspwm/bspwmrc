@@ -22,4 +22,5 @@ bspc config split_ratio 0.50
 
 # App rules
 bspc rule -a nitrogen state=floating focus=on
+bspc rule -a Emacs state=tiled
 
