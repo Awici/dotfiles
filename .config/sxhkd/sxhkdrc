@@ -71,11 +71,13 @@ XF86AudioMute
   
 # Brightness up
 XF86MonBrightnessUp
-  lux -a 5%
+#  lux -a 5%
+  backlight_control +5
 
 # And brightness down
 XF86MonBrightnessDown
-  lux -s 5%
+#  lux -s 5%
+  backlight_control -5
 
 # Screenshot
 Print
