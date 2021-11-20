@@ -5,12 +5,7 @@ super + b
   brave
 
 super + space
-  rofi -show drun -columns 2 -padding 50 \
-    -hide-scrollbar -show-icons
-
-super + p
-  rofi -show run -columns 2 -padding 50 \
-    -hide-scrollbar -show-icons
+  /home/le/.config/rofi/bin/launcher_text
 
 super + n
   thunar
@@ -22,7 +17,7 @@ super + F1
   betterlockscreen -l dimblur
 
 super + a
-  ~/.config/rofi/powermenu.sh
+  /home/le/.config/rofi/bin/applet_powermenu
 
 #
 # focus / swap

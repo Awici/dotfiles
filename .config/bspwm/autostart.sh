@@ -15,5 +15,6 @@ run xrdb merge ~/.Xresources &
 run nitrogen --restore &
 run setxkbmap gb &
 run dunst &
+run fcitx -d &
 
 run $HOME/.config/polybar/forest/launch.sh &

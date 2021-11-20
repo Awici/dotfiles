@@ -8,11 +8,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="/home/le/.oh-my-zsh"
-export VISUAL=nvim
-export PAGER=bat
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -91,28 +86,41 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 alias v='nvim'
+alias vl='/home/le/.local/bin/lvim'
 # alias bat='batcat'
-alias ls='exa -lah --icons'
+alias ls='exa -lah --icons --git'
 
-export PATH=$PATH:/home/le/.yarn/bin
-export PATH=/home/le/.nimble/bin:$PATH
-# alias fd='fdfind'
-
-export FZF_DEFAULT_COMMAND="fd --type file --color=always"
-export FZF_DEFAULT_OPTS="--ansi"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --preview 'bat --color=always --line-range :300 {}'" 
-export NNN_PLUG='f:finder;o:fzopen;p:preview-tabbed;d:diffs;t:nmount;v:imgview;w:wall'
-export NNN_FIFO=/tmp/nnn.fifo
 # export MANPATH="/usr/local/man:$MANPATH"
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
 
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
 
 # export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-
-export VISUAL=nvim
-export EDITOR="$VISUAL"
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -145,3 +153,5 @@ HISTFILE=~/.zsh_history
 eval "$(starship init zsh)"
 
 # [ -f "/home/le/.ghcup/env" ] && source "/home/le/.ghcup/env" # ghcup-env
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
