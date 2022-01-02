@@ -18,3 +18,4 @@ run dunst &
 run fcitx -d &
 
 run $HOME/.config/polybar/forest/launch.sh &
+

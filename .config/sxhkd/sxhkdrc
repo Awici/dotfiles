@@ -76,7 +76,7 @@ XF86MonBrightnessDown
 
 # Screenshot
 Print
-  scrot ~/Pictures/Screenshot-$(date +%F_%T).png
+  maim -s | tee ~/Documents/notes/screenshots/$(date +%s).png | xclip -selection clipboard -t image/png
 
 #
 # bspwm hotkeys

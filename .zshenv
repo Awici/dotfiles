@@ -19,7 +19,7 @@ export FZF_DEFAULT_COMMAND="fd --type file --color=always"
 export FZF_DEFAULT_OPTS="--ansi"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --preview 'bat --color=always --line-range :300 {}'" 
-export NNN_PLUG='f:finder;o:fzopen;p:preview-tabbed;d:diffs;t:nmount;v:imgview;w:wall'
+export NNN_PLUG='f:finder;o:fzopen;p:preview-tabbed;d:diffs;t:nmount;v:imgview;w:wall;j:autojump;u:dragdrop'
 export NNN_BMS="s:$HOME/Documents/notes/jupyter;t:$HOME/Documents/notes/textbooks/;c:$HOME/Documents/code/;p:$HOME/Documents/code/projects/;D:$HOME/Downloads/"
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_COLORS='1234'

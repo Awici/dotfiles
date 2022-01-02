@@ -18,7 +18,7 @@ lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- unmap a default keymapping
--- lvim.keys.normal_mode["<C-Up>"] = ""
+-- lvim.keys.normal_mode["<C-Up>"] = false
 -- edit a default keymapping
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
 
@@ -118,9 +118,12 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { exe = "black" },
+  { exe = "black", filetypes = { "python" } },
   {
     exe = "prettier",
+    ---@usage arguments to pass to the formatter
+    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+    args = { "--print-with", "100" },
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
     filetypes = { "typescript", "typescriptreact" },
   },
@@ -129,43 +132,58 @@ formatters.setup {
 -- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup {
---   { exe = "black" },
+--   { exe = "flake8", filetypes = { "python" } },
 --   {
---     exe = "eslint_d",
+--     exe = "shellcheck",
+--     ---@usage arguments to pass to the formatter
+--     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+--     args = { "--severity", "warning" },
+--   },
+--   {
+--     exe = "codespell",
 --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "javascript", "javascriptreact" },
+--     filetypes = { "javascript", "python" },
 --   },
 -- }
 
 -- Additional Plugins
-lvim.plugins = {
-    {"folke/tokyonight.nvim"},
-    {
-      "folke/trouble.nvim",
-      cmd = "TroubleToggle",
-    },
-    {"folke/twilight.nvim"},
-    {"lukas-reineke/indent-blankline.nvim"},
-    {"folke/zen-mode.nvim"}
-}
+-- lvim.plugins = {
+--     {"folke/tokyonight.nvim"},
+--     {
+--       "folke/trouble.nvim",
+--       cmd = "TroubleToggle",
+--     },
+-- }
 
-vim.opt.list = true
-vim.opt.listchars:append("eol:↴")
+ -- Additional Plugins
+ lvim.plugins = {
+     {"folke/tokyonight.nvim"},
+     {
+       "folke/trouble.nvim",
+       cmd = "TroubleToggle",
+     },
+     {"folke/twilight.nvim"},
+     {"lukas-reineke/indent-blankline.nvim"},
+     {"folke/zen-mode.nvim"}
+ }
 
-require("indent_blankline").setup {
-    show_end_of_line = true,
-    show_current_context = true,
-    show_current_context_start = true,
-    filetype_exclude = {
-       "help",
-       "terminal",
-       "dashboard",
-       "packer",
-       "lspinfo",
-       "TelescopePrompt",
-       "TelescopeResults",
-    },
-    buftype_exclude = { "terminal" },
+ vim.opt.list = true
+ vim.opt.listchars:append("eol:↴")
+
+ require("indent_blankline").setup {
+     show_end_of_line = true,
+     show_current_context = true,
+     show_current_context_start = true,
+     filetype_exclude = {
+        "help",
+        "terminal",
+        "dashboard",
+        "packer",
+        "lspinfo",
+        "TelescopePrompt",
+        "TelescopeResults",
+     },
+     buftype_exclude = { "terminal" },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)

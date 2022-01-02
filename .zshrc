@@ -151,6 +151,7 @@ HISTFILE=~/.zsh_history
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 # [ -f "/home/le/.ghcup/env" ] && source "/home/le/.ghcup/env" # ghcup-env
 
