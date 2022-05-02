@@ -152,7 +152,9 @@ HISTFILE=~/.zsh_history
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+source <(plz --completion_script)
 
 # [ -f "/home/le/.ghcup/env" ] && source "/home/le/.ghcup/env" # ghcup-env
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+

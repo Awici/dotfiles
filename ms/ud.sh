@@ -42,7 +42,7 @@ main()
   check_priv
   country=$(get_country)
   msg "Country: $country"
-  reflector --country $country --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+  reflector --verbose --country $country --latest 20 -f 10 -a 12 --protocol https --sort rate --download-timeout 10 --save /etc/pacman.d/mirrorlist
   msg "Updated reflector"
 }
 
